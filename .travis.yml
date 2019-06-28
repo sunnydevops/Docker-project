@@ -10,6 +10,16 @@ script:
 
 after_success:
   - docker build -t sunnyrajput/multi-client ./client
-  - docker build -t sunnyrajput/multi-client ./server
-  - docker build -t sunnyrajput/multi-client ./nginx
-  - docker build -t sunnyrajput/multi-client ./worker
+  - docker build -t sunnyrajput/multi-server ./server
+  - docker build -t sunnyrajput/multi-nginx ./nginx
+  - docker build -t sunnyrajput/multi-worker ./worker
+
+#login to Docker CLI
+  - echo "$Password" | docker login -u "$DockerID" --password-stdin
+
+# take those images and push them on Docker hub
+
+  - docker push sunnyrajput/multi-client
+  - docker push sunnyrajput/multi-server
+  - docker push sunnyrajput/multi-nginx
+  - docker push sunnyrajput/multi-worker
