@@ -5,6 +5,7 @@ metadata:
   labels:
     component: web
 spec:
+  hostNetwork: true
   containers:
     - name: client
       image: stephengrider/multi-client
